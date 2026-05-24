@@ -17,13 +17,26 @@ const app = express();
 
 // Allowed frontend
 const allowedOrigins = [
-  "https://journal-app-git-main-sumayya-s-projects1.vercel.app"
+  "https://journal-app-git-main-sumayya-s-projects1.vercel.app",
+  "https://journal-btdlq0a5p-sumayya-s-projects1.vercel.app"
 ];
+
+// Helper to determine if an origin is allowed
+const isOriginAllowed = (origin) => {
+  if (!origin) return true;
+  if (allowedOrigins.includes(origin)) return true;
+  // Match localhost and 127.0.0.1 with any port
+  if (/^https?:\/\/localhost(:\d+)?$/.test(origin)) return true;
+  if (/^https?:\/\/127\.0\.0\.1(:\d+)?$/.test(origin)) return true;
+  // Match Vercel deployments for sumayya's project
+  if (/^https:\/\/journal-.*-sumayya-s-projects1\.vercel\.app$/.test(origin)) return true;
+  return false;
+};
 
 // CORS Configuration
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (isOriginAllowed(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
