@@ -12,7 +12,11 @@ import postRoutes from "./routes/postRoutes.js";
 
 const app = express();
 
-app.use(cors());
+const cors = require("cors");
+app.use(cors({
+  origin: "https://journal-app-orpin.vercel.app/",
+  credentials: true
+}));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
