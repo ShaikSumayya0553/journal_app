@@ -15,9 +15,14 @@ import postRoutes from "./routes/postRoutes.js";
 // Initialize app
 const app = express();
 
-// Middleware
-app.use(cors());
+// CORS Middleware
+app.use(cors({
+  origin: "https://journal-app-git-main-sumayya-s-projects1.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
+// Middleware
 app.use(express.json());
 
 // Routes
