@@ -1,0 +1,38 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Feed from "./pages/Feed";
+import CreatePost from "./pages/CreatePost";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        
+        {/* Protected endpoints */}
+        <Route 
+          path="/feed" 
+          element={
+            <ProtectedRoute>
+              <Feed />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/create" 
+          element={
+            <ProtectedRoute>
+              <CreatePost />
+            </ProtectedRoute>
+          } 
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
