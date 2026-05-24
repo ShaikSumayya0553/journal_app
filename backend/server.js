@@ -15,12 +15,26 @@ import postRoutes from "./routes/postRoutes.js";
 // Initialize app
 const app = express();
 
-// CORS Middleware
+// Allowed frontend
+const allowedOrigins = [
+  "https://journal-app-git-main-sumayya-s-projects1.vercel.app"
+];
+
+// CORS Configuration
 app.use(cors({
-  origin: "https://journal-app-git-main-sumayya-s-projects1.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
+
+// Handle preflight requests
+app.options("*", cors());
 
 // Middleware
 app.use(express.json());
@@ -28,6 +42,11 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
+
+// Test Route
+app.get("/", (req, res) => {
+  res.send("Backend running successfully");
+});
 
 // Server
 const PORT = process.env.PORT || 5000;
