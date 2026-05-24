@@ -5,20 +5,19 @@ import dotenv from "dotenv";
 // Load environment variables
 dotenv.config();
 
+// Database connection
 import "./config/db.js";
 
+// Routes
 import authRoutes from "./routes/authRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 
+// Initialize app
 const app = express();
 
-// CORS
-app.use(cors({
-  origin: "https://journal-app-orpin.vercel.app",
-  credentials: true
-}));
-
 // Middleware
+app.use(cors());
+
 app.use(express.json());
 
 // Routes
