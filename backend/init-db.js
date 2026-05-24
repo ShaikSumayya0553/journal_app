@@ -10,14 +10,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 async function run() {
-  const host = process.env.DB_HOST;
-  const port = parseInt(process.env.DB_PORT || "3306", 10);
-  const user = process.env.DB_USER || "root";
-  const password = process.env.DB_PASSWORD;
-  const database = process.env.DB_NAME || "railway";
+  const host = process.env.DB_HOST || process.env.MYSQLHOST;
+  const port = parseInt(process.env.DB_PORT || process.env.MYSQLPORT || "3306", 10);
+  const user = process.env.DB_USER || process.env.MYSQLUSER || "root";
+  const password = process.env.DB_PASSWORD || process.env.MYSQLPASSWORD;
+  const database = process.env.DB_NAME || process.env.MYSQLDATABASE || "railway";
 
   if (!host) {
-    console.error("Error: DB_HOST is empty in your .env file! Please set it to your Railway public host (from the 'Connect' tab).");
+    console.error("Error: DB_HOST / MYSQLHOST is empty in your environment! Please set it to your database host.");
     process.exit(1);
   }
 

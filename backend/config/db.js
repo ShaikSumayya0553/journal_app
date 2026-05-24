@@ -4,11 +4,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const db = mysql.createPool({
-  host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "root", // Defaults to the working 'root' password
-  database: process.env.DB_NAME || "journal_app",
-  port: parseInt(process.env.DB_PORT || "3306", 10),
+  host: process.env.DB_HOST || process.env.MYSQLHOST || "localhost",
+  user: process.env.DB_USER || process.env.MYSQLUSER || "root",
+  password: process.env.DB_PASSWORD !== undefined ? process.env.DB_PASSWORD : (process.env.MYSQLPASSWORD || "root"),
+  database: process.env.DB_NAME || process.env.MYSQLDATABASE || "journal_app",
+  port: parseInt(process.env.DB_PORT || process.env.MYSQLPORT || "3306", 10),
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
