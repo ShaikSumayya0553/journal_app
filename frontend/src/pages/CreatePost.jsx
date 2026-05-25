@@ -55,7 +55,7 @@ function CreatePost() {
       <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-violet-600/10 blur-[120px] pointer-events-none"></div>
 
-      <div className="bg-slate-900/60 backdrop-blur-xl w-full max-w-4xl p-6 md:p-10 rounded-3xl border border-slate-800/80 shadow-2xl z-10 grid grid-cols-1 lg:grid-cols-5 gap-8">
+      <div className="bg-slate-900/60 backdrop-blur-xl w-full max-w-4xl p-4 sm:p-6 md:p-10 rounded-3xl border border-slate-800/80 shadow-2xl z-10 grid grid-cols-1 lg:grid-cols-5 gap-8">
         
         {/* Editor Form */}
         <div className="lg:col-span-3 space-y-6">
