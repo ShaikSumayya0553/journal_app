@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 dotenv.config();
+
 import "./config/db.js";
 
 import authRoutes from "./routes/authRoutes.js";
@@ -10,14 +11,8 @@ import postRoutes from "./routes/postRoutes.js";
 
 const app = express();
 
-const allowedOrigins = [
-  "https://journal-app-git-main-sumayya-s-projects1.vercel.app",
-  "https://journal-btdlq0a5p-sumayya-s-projects1.vercel.app"
-];
-
 app.use(cors({
-  origin: allowedOrigins,
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: "https://journal-btdlq0a5p-sumayya-s-projects1.vercel.app",
   credentials: true
 }));
 
